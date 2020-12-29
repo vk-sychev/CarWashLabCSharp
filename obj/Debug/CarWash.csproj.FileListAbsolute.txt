@@ -1,0 +1,13 @@
+C:\Users\vasil\source\repos\CarWash\bin\Debug\CarWash.exe.config
+C:\Users\vasil\source\repos\CarWash\bin\Debug\CarWash.exe
+C:\Users\vasil\source\repos\CarWash\bin\Debug\CarWash.pdb
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.csprojAssemblyReference.cache
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.Properties.Resources.resources
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.csproj.GenerateResource.cache
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.csproj.CoreCompileInputs.cache
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.exe
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.pdb
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.MainForm.resources
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.UserControls.OrdersUserControl.resources
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.Forms.AddEditOrderDialog.resources
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.UserControls.ClientUserControl.resources
