@@ -15,17 +15,23 @@ namespace CarWash
 {
     public partial class MainForm : Form
     {
+        string connectionString;
         public MainForm()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["DbConnStr"].ConnectionString;
         }
 
-        private void OrdersUserControl_Load(object sender, EventArgs e)
+
+        private void OrdersUserControl1_Load(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DbConnStr"].ConnectionString;
-            ordersUserControl.BoundControl(connectionString);
+            ordersUserControl1.BoundControl(connectionString);
+            
         }
-    }
-    
-    
+
+        private void ClientUserControl1_Load(object sender, EventArgs e)
+        {
+            clientUserControl1.BoundControl(connectionString);
+        }
+    }    
 }

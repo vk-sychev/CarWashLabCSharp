@@ -24,7 +24,7 @@ namespace CarWash.DataAccess
                                "А.id_Акции, А.Название_акции, А.Размер_скидки , " +
                                "Б.id_Бокса, Б.Название_бокса , " +
                                "АМ.id_Автомойки, АМ.Название, АМ.Адрес, У.id_Услуги, У.Название AS Название_услуги , " +
-                               "АВТ.id_Автомобиля, МК.id_Марки, МК.Название AS Название_марки, М.id_Модели, М.Название AS Название_модели, АВТ.ГосНомер + CAST(АВТ.Регион AS VARCHAR(3)) AS Номер_машины , " +
+                               "АВТ.id_Автомобиля, МК.id_Марки, МК.Название AS Название_марки, М.id_Модели, М.Название AS Название_модели, АВТ.ГосНомер, АВТ.Регион , " +
                                "З.Стоимость " +
                                "FROM Заказ_5 З JOIN Клиент_8 К " +
                                "ON З.id_Клиента = К.id_Клиента " +
@@ -125,7 +125,9 @@ namespace CarWash.DataAccess
 
                                     }
                                 },
-                                CarNumber = (string)reader["Номер_машины"]
+                                //CarNumber = (string)reader["Номер_машины"],
+                                Number = (string)reader["ГосНомер"],
+                                Region = (int)reader["Регион"]
                              };
 
                             order.Cost = (decimal)reader["Стоимость"];
@@ -363,7 +365,6 @@ namespace CarWash.DataAccess
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
                     command.Parameters.Add(new SqlParameter("@id_Услуги", order.Service.Id_Service));
-                    //command.Parameters.Add(new SqlParameter("@id_Старой_услуги", oldService.Id_Service));
                     command.Parameters.Add(new SqlParameter("@id_Заказа", order.Id_Order));
                     command.ExecuteNonQuery();
                 }

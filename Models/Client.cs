@@ -23,5 +23,6 @@ namespace CarWash.Models
             }
         }
         public Discount Discount { get; set; }
+        public decimal DiscountAmount { get { return Discount != null ? Discount.Amount: 0; } }
     }
 }

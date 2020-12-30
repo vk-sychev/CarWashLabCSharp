@@ -11,3 +11,5 @@ C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.MainForm.resources
 C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.UserControls.OrdersUserControl.resources
 C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.Forms.AddEditOrderDialog.resources
 C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.UserControls.ClientUserControl.resources
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.Forms.AddEditClientDialog.resources
+C:\Users\vasil\source\repos\CarWash\obj\Debug\CarWash.UserControls.CarUserControl.resources

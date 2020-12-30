@@ -35,7 +35,7 @@ namespace CarWash.UserControls
             InitializeComponent();
         }
 
-        public void OrdersUserConstrol(string connectionString)
+        public OrdersUserControl(string connectionString)
         {
             InitializeComponent();
             BoundControl(connectionString);

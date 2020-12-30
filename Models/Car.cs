@@ -12,6 +12,8 @@ namespace CarWash.Models
         public Brand Brand { get; set; }
         public Model Model { get; set; }
         public Client Client { get; set; }
-        public string CarNumber { get; set; }
+        public string Number { get; set; }
+        public int Region { get; set; }
+        public string CarNumber { get { return Number + Region.ToString(); } }
     }
 }

@@ -96,7 +96,7 @@ namespace CarWash.DataAccess
 
         public void InsertClient(Client client)
         {
-            string sqlQuery = "INSERT INTO Клиент_8(Фамилия, Имя, Отчество, Номер_телефона, id_Скидки)" +
+            string sqlQuery = @"INSERT INTO Клиент_8(Фамилия, Имя, Отчество, Номер_телефона, id_Скидки) " +
                               "VALUES(@Surname, @Name, @Patronymic, @Number, @id_Discount)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -112,10 +112,55 @@ namespace CarWash.DataAccess
                         command.Parameters.Add(new SqlParameter("@Patronymic", DBNull.Value));
                     command.Parameters.Add(new SqlParameter("@Number", client.Number));
                     if (client.Discount != null)
-                        command.Parameters.Add(new SqlParameter("@id_Discount", client.Discount));
+                        command.Parameters.Add(new SqlParameter("@id_Discount", client.Discount.Id_Discount));
                     else
                         command.Parameters.Add(new SqlParameter("@id_Discount", DBNull.Value));
+                    command.ExecuteNonQuery();
                 }
+                connection.Close();
+            }
+        }
+
+        public void UpdateClient(Client client)
+        {
+            string sqlQuery = @"UPDATE Клиент_8 SET Фамилия = @Фамилия, Имя = @Имя, Отчество = @Отчество, Номер_телефона = @Номер_телефона, id_Скидки = @id_Скидки " +
+                              "WHERE id_Клиента = @id_Клиента";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@Фамилия", client.Surname));
+                    command.Parameters.Add(new SqlParameter("@Имя", client.Name));
+                    if (client.Patronymic!=null)
+                        command.Parameters.Add(new SqlParameter("@Отчество", client.Patronymic));
+                    else
+                        command.Parameters.Add(new SqlParameter("@Отчество", DBNull.Value));
+                    command.Parameters.Add(new SqlParameter("@Номер_телефона", client.Number));
+                    if (client.Discount!=null)
+                        command.Parameters.Add(new SqlParameter("@id_Скидки", client.Discount.Id_Discount));
+                    else
+                        command.Parameters.Add(new SqlParameter("@id_Скидки", DBNull.Value));
+                    command.Parameters.Add(new SqlParameter("@id_Клиента", client.Id_Client));
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void DeleteClient(int id_Client)
+        {
+            string sqlQuery = @"DELETE FROM Клиент_8 " +
+                              "WHERE id_Клиента = @id_Клиента";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@id_Клиента", id_Client));
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
             }
         }
     }

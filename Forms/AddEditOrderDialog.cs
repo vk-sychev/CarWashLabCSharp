@@ -65,7 +65,6 @@ namespace CarWash.Forms
             oldService = services.Where(t => t.Id_Service == Order.Service.Id_Service).First();
             cbService.SelectedItem = oldService;
             cbCar.SelectedItem = cars.Where(t => t.Id_Car == Order.Car.Id_Car).First();
-            //цена
         }
 
         private void BtnOK_Click(object sender, EventArgs e)

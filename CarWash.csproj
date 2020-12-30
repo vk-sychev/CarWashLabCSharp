@@ -56,6 +56,12 @@
     <Compile Include="DataAccess\OrderDataAccess.cs" />
     <Compile Include="DataAccess\ServiceDataAccess.cs" />
     <Compile Include="DataAccess\StockDataAccess.cs" />
+    <Compile Include="Forms\AddEditClientDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddEditClientDialog.Designer.cs">
+      <DependentUpon>AddEditClientDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddEditOrderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,12 @@
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\CarUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CarUserControl.Designer.cs">
+      <DependentUpon>CarUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ClientUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +104,9 @@
     <Compile Include="UserControls\OrdersUserControl.Designer.cs">
       <DependentUpon>OrdersUserControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\AddEditClientDialog.resx">
+      <DependentUpon>AddEditClientDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddEditOrderDialog.resx">
       <DependentUpon>AddEditOrderDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +122,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\CarUserControl.resx">
+      <DependentUpon>CarUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ClientUserControl.resx">
       <DependentUpon>ClientUserControl.cs</DependentUpon>
     </EmbeddedResource>
