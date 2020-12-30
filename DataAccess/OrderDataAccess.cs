@@ -293,50 +293,62 @@ namespace CarWash.DataAccess
 
         public void UpdateOrder(Order order, Service oldService)
         {
-            string sqlQuery = @"UPDATE Заказ_5 SET Дата_заказа = @DateOrder, Время_начала_работ = @TimeOfStartWork, Время_окончания_работ = @TimeOfEndWork, 
-                                                   id_Клиента = @Id_Client, id_Акции = @Id_Stock, id_Бокса = @Id_Box, id_Автомобиля = @Id_Car, Стоимость = @Cost
-                                                   WHERE id_Заказа = @id_Заказа";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+               
+                using (SqlTransaction transaction = connection.BeginTransaction())
                 {
-                    command.Parameters.Add(new SqlParameter("@id_Заказа", order.Id_Order));
-                    command.Parameters.Add(new SqlParameter("@DateOrder", order.DateOrder));
-                    command.Parameters.Add(new SqlParameter("@TimeOfStartWork", order.TimeOfStartWork));
-                    command.Parameters.Add(new SqlParameter("@TimeOfEndWork", order.TimeOfEndWork));
-                    command.Parameters.Add(new SqlParameter("@Id_Client", order.Client.Id_Client));
-                    if (order.Stock != null)
-                        command.Parameters.Add(new SqlParameter("@Id_Stock", order.Stock.Id_Stock));
-                    else
-                        command.Parameters.Add(new SqlParameter("@Id_Stock", DBNull.Value));
-                    command.Parameters.Add(new SqlParameter("@Id_Box", order.Box.Id_Box));
-                    command.Parameters.Add(new SqlParameter("@Id_Car", order.Car.Id_Car));
-                    command.Parameters.Add(new SqlParameter("@Cost", order.Cost));
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        UpdateOrderInternal(order, connection, transaction);
+                        UpdateOrder_Service(order, oldService, connection, transaction);
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                    }
                 }
+
                 connection.Close();
-                UpdateOrder_Service(order, oldService);
             }
         }
 
-        private void UpdateOrder_Service(Order order, Service oldService)
+        private void UpdateOrderInternal(Order order, SqlConnection connection, SqlTransaction transaction)
+        {
+            string sqlQuery = @"UPDATE Заказ_5 SET Дата_заказа = @DateOrder, Время_начала_работ = @TimeOfStartWork, Время_окончания_работ = @TimeOfEndWork, 
+                                                   id_Клиента = @Id_Client, id_Акции = @Id_Stock, id_Бокса = @Id_Box, id_Автомобиля = @Id_Car, Стоимость = @Cost
+                                                   WHERE id_Заказа = @id_Заказа";
+            using (SqlCommand command = new SqlCommand(sqlQuery, connection, transaction))
+            {
+                command.Parameters.Add(new SqlParameter("@id_Заказа", order.Id_Order));
+                command.Parameters.Add(new SqlParameter("@DateOrder", order.DateOrder));
+                command.Parameters.Add(new SqlParameter("@TimeOfStartWork", order.TimeOfStartWork));
+                command.Parameters.Add(new SqlParameter("@TimeOfEndWork", order.TimeOfEndWork));
+                command.Parameters.Add(new SqlParameter("@Id_Client", order.Client.Id_Client));
+                if (order.Stock != null)
+                    command.Parameters.Add(new SqlParameter("@Id_Stock", order.Stock.Id_Stock));
+                else
+                    command.Parameters.Add(new SqlParameter("@Id_Stock", DBNull.Value));
+                command.Parameters.Add(new SqlParameter("@Id_Box", order.Box.Id_Box));
+                command.Parameters.Add(new SqlParameter("@Id_Car", order.Car.Id_Car));
+                command.Parameters.Add(new SqlParameter("@Cost", order.Cost));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private void UpdateOrder_Service(Order order, Service oldService, SqlConnection connection, SqlTransaction transaction)
         {
             string sqlQuery = @"UPDATE Услуга_Заказ_19 SET id_Услуги = @id_Услуги 
-                                WHERE id_Заказа = @id_Заказа AND id_Услуги = @id_Старой_услуги";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                                WHERE id_Заказа = @id_Заказа AND id_Услуги = @id_Старой_услуги";         
+                using (SqlCommand command = new SqlCommand(sqlQuery, connection, transaction))
                 {
                     command.Parameters.Add(new SqlParameter("@id_Услуги", order.Service.Id_Service));
                     command.Parameters.Add(new SqlParameter("@id_Старой_услуги", oldService.Id_Service));
                     command.Parameters.Add(new SqlParameter("@id_Заказа", order.Id_Order));
                     command.ExecuteNonQuery();
                 }
-                connection.Close();
-            }
         }
 
         public void DeleteOrder(Order order)

@@ -34,6 +34,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvClients = new System.Windows.Forms.DataGridView();
+            this.id_Car = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,6 +106,7 @@
             this.dgvClients.AllowUserToDeleteRows = false;
             this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_Car,
             this.Surname,
             this.CName,
             this.Patronymic,
@@ -116,6 +118,14 @@
             this.dgvClients.ReadOnly = true;
             this.dgvClients.Size = new System.Drawing.Size(970, 288);
             this.dgvClients.TabIndex = 1;
+            // 
+            // id_Car
+            // 
+            this.id_Car.DataPropertyName = "id_Client";
+            this.id_Car.HeaderText = "Id";
+            this.id_Car.Name = "id_Car";
+            this.id_Car.ReadOnly = true;
+            this.id_Car.Width = 40;
             // 
             // Surname
             // 
@@ -155,7 +165,7 @@
             this.DiscountAmount.HeaderText = "Размер скидки";
             this.DiscountAmount.Name = "DiscountAmount";
             this.DiscountAmount.ReadOnly = true;
-            this.DiscountAmount.Width = 107;
+            this.DiscountAmount.Width = 67;
             // 
             // ClientUserControl
             // 
@@ -181,6 +191,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_Car;
         private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
         private System.Windows.Forms.DataGridViewTextBoxColumn CName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Patronymic;

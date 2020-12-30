@@ -33,5 +33,10 @@ namespace CarWash
         {
             clientUserControl1.BoundControl(connectionString);
         }
+
+        private void CarUserControl1_Load(object sender, EventArgs e)
+        {
+            carUserControl1.BoundControl(connectionString);
+        }
     }    
 }

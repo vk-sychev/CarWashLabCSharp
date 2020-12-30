@@ -62,7 +62,6 @@ namespace CarWash.DataAccess
                                     {
                                         Id_Brand = (int)reader["Id_Марки"],
                                         Name = (string)reader["Название_марки"]
-
                                     }
                                 },
                                 //CarNumber = (string)reader["Номер_машины"]

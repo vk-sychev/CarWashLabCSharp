@@ -34,9 +34,11 @@
             this.ordersUserControl1 = new CarWash.UserControls.OrdersUserControl();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageCars = new System.Windows.Forms.TabPage();
+            this.carUserControl1 = new CarWash.UserControls.CarUserControl();
             this.tabPageClient.SuspendLayout();
             this.tabPageOrders.SuspendLayout();
             this.tabControl.SuspendLayout();
+            this.tabPageCars.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPageClient
@@ -95,12 +97,22 @@
             // 
             // tabPageCars
             // 
+            this.tabPageCars.Controls.Add(this.carUserControl1);
             this.tabPageCars.Location = new System.Drawing.Point(4, 22);
             this.tabPageCars.Name = "tabPageCars";
             this.tabPageCars.Size = new System.Drawing.Size(976, 424);
             this.tabPageCars.TabIndex = 2;
             this.tabPageCars.Text = "Машины";
             this.tabPageCars.UseVisualStyleBackColor = true;
+            // 
+            // carUserControl1
+            // 
+            this.carUserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.carUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.carUserControl1.Name = "carUserControl1";
+            this.carUserControl1.Size = new System.Drawing.Size(976, 424);
+            this.carUserControl1.TabIndex = 0;
+            this.carUserControl1.Load += new System.EventHandler(this.CarUserControl1_Load);
             // 
             // MainForm
             // 
@@ -114,6 +126,7 @@
             this.tabPageClient.ResumeLayout(false);
             this.tabPageOrders.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
+            this.tabPageCars.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -126,6 +139,7 @@
         private UserControls.OrdersUserControl ordersUserControl1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageCars;
+        private UserControls.CarUserControl carUserControl1;
     }
 }
 

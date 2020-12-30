@@ -15,7 +15,9 @@ namespace CarWash.UserControls
     public partial class CarUserControl : UserControl
     {
         ClientDataAccess clientDataAccess;
+        CarDataAccess carDataAccess;
         List<Client> clients;
+        List<Car> cars;
         public CarUserControl()
         {
             InitializeComponent();
@@ -30,8 +32,12 @@ namespace CarWash.UserControls
         public void BoundControl(string connectionString)
         {
             clientDataAccess = new ClientDataAccess(connectionString);
+            carDataAccess = new CarDataAccess(connectionString);
             clients = clientDataAccess.GetClients();
-            dgvCars.DataSource = clients;
+            cars = carDataAccess.GetCars();
+            dgvCars.AutoGenerateColumns = false;
+            dgvCars.MultiSelect = false;
+            dgvCars.DataSource = cars;
         }
     }
 }
